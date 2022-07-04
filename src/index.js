@@ -1,16 +1,18 @@
 import "./style.css";
 import loadPage from "./loading.js";
 import topPage from "./topPage.js";
-
+import menuPage from "./menupage.js";
+import contactPage from "./contactpage.js";
+import homePage from "./homepage.js";
 console.log("✅ running");
 
 const topSection = document.getElementById("top-section");
 const content = document.getElementById("content");
 
 topSection.appendChild(topPage());
-content.appendChild(loadPage());
+content.appendChild(homePage());
 
-let currentPage = "Home";
+let currentPage = "home";
 
 const menuBtns = document.querySelectorAll(".menu");
 
@@ -26,6 +28,18 @@ menuBtns.forEach((btn) => {
         e.target.className += " active";
         currentPage = e.target.id;
         content.innerHTML = "";
-        // changePage(currentPage);
+        changePage(currentPage);
     });
 });
+
+function changePage(currentPage) {
+    if (currentPage == "menu") {
+        content.appendChild(menuPage());
+    }
+    if (currentPage == "contact") {
+        content.appendChild(contactPage());
+    }
+    if (currentPage == "home") {
+        content.appendChild(homePage());
+    }
+}
